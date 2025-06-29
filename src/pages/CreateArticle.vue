@@ -17,6 +17,14 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const props = defineProps<{ articles: Article[] }>()
+
+interface Article {
+  title: string
+  content: string
+  date: string
+}
 
 const title = ref('')
 const content = ref('')
