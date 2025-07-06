@@ -8,8 +8,8 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import ArticleForm from '@/pages/ArticleForm.vue'
-import ArticlesList from '@/pages/ArticlesList.vue'
+import ArticleForm from '../pages/ArticleForm.vue'
+import ArticlesList from '../pages/ArticlesList.vue'
 
 interface Article {
   title: string

@@ -22,11 +22,8 @@
 </template>
 
 <script setup lang="ts">
-interface Article {
-  title: string
-  content: string
-  date: string
-}
+import type { Article } from '../types/article.ts'
+
 
 defineProps<{ articles: Article[] }>()
 defineEmits(['edit-article'])
