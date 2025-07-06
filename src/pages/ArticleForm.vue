@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import type { Article } from '../types/article.ts'
+import type { Article } from '../types/article'
 
 // ✅ сохраняем props в переменную
 const props = defineProps<{

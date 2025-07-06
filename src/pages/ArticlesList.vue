@@ -1,30 +1,38 @@
+<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <template>
-  <div v-if="articles.length" class="space-y-4">
-    <div
-      v-for="(article, index) in articles"
-      :key="index"
-      class="bg-white p-5 rounded-xl shadow-sm border"
-    >
-    <div class="text-gray-700 mb-2 whitespace-pre-wrap">
-      <h2 class="text-xl font-semibold mb-2">{{ article.title }}</h2>
-      <p class="text-gray-700 mb-2">{{ article.content }}</p>
-      <p class="text-sm text-gray-400 mb-2">{{ article.date }}</p>
-    </div>
-      <button
-        @click="$emit('edit-article', article, index)"
-        class="text-blue-500 hover:underline text-sm"
-      >
-        ✏️ Редактировать
-      </button>
+  <div>
+    <div v-for="(article, index) in articles" :key="article.id" class="bg-white p-4 rounded-xl shadow mb-4">
+      <h2 class="text-xl font-bold">{{ article.title }}</h2>
+      <p class="text-gray-700">{{ article.content }}</p>
+      <p class="text-sm text-gray-500">Дата: {{ article.date }}</p>
+      <p>Рейтинг: {{ article.rating }}</p>
+
+      <button @click="$emit('edit-article', article, index)" class="text-blue-500 hover:underline text-sm mr-2">✏️ Редактировать</button>
+      <button @click="$emit('delete-article', article.id)" class="text-red-500 hover:underline text-sm">🗑️ Удалить</button>
+
+      <div class="mt-2">
+        <label>Оценка: </label>
+        <select v-model.number="article.rating" @change="$emit('rate-article', article)">
+          <option :value="0">0</option>
+          <option :value="1">1</option>
+          <option :value="2">2</option>
+          <option :value="3">3</option>
+          <option :value="4">4</option>
+          <option :value="5">5</option>
+        </select>
+      </div>
     </div>
   </div>
-  <div v-else class="text-center text-gray-400 mt-10">Пока нет ни одной статьи.</div>
 </template>
 
 <script setup lang="ts">
-import type { Article } from '../types/article.ts'
+import type { Article } from '../types/article'
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const props = defineProps<{
+  articles: Article[]
+}>()
 
-defineProps<{ articles: Article[] }>()
-defineEmits(['edit-article'])
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const emit = defineEmits(['edit-article', 'delete-article', 'rate-article'])
 </script>
